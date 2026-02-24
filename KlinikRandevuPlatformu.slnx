@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="KlinikRandevuPlatformu.API/KlinikRandevuPlatformu.API.csproj" />
+  <Project Path="KlinikRandevuPlatformu.MAUI/KlinikRandevuPlatformu.MAUI.csproj" />
+  <Project Path="KlinikRandevuPlatformu.Shared/KlinikRandevuPlatformu.Shared.csproj" />
+</Solution>
