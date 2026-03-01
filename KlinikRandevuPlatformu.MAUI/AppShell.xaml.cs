@@ -1,10 +1,15 @@
-﻿namespace KlinikRandevuPlatformu.MAUI
+﻿using KlinikRandevuPlatformu.MAUI.Pages;
+
+namespace KlinikRandevuPlatformu.MAUI;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        // صفحات مسجلة للتنقل
+        Routing.RegisterRoute("register", typeof( LoginPage));
+      
     }
 }
