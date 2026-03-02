@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KlinikRandevuPlatformu.MAUI.Pages.LoginPage"
-             Title="Login">
+             x:Class="KlinikRandevuPlatformu.MAUI.Pages.RegisterPage"
+             Title="Register">
+
     <VerticalStackLayout Padding="20" Spacing="12">
         <Entry x:Name="UsernameEntry" Placeholder="Username" />
         <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
 
-        <Button Text="Test API /health" Clicked="OnHealthClicked" />
-        <Button Text="Login" Clicked="OnLoginClicked" />
-        <!-- ✅ هذا الزر اللي ينقلك للتسجيل -->
-        <Button Text="Register" Clicked="OnRegisterClicked" /> 
-      
+        <!-- ✅ هذا اللي ناقص عندك -->
+        <Picker x:Name="RolePicker" Title="Choose Role" />
+
+        <Button Text="Register" Clicked="OnRegisterClicked" />
     </VerticalStackLayout>
 </ContentPage>

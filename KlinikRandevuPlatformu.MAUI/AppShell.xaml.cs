@@ -9,7 +9,8 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         // صفحات مسجلة للتنقل
-        Routing.RegisterRoute("register", typeof( LoginPage));
-      
+        Routing.RegisterRoute("patientHome", typeof(Pages.CitySelectPage));
+        Routing.RegisterRoute("clinics", typeof(Pages.ClinicsPage));
+        Routing.RegisterRoute("register", typeof(Pages.RegisterPage));
     }
 }

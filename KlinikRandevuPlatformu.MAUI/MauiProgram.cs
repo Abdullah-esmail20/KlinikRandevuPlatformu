@@ -1,42 +1,47 @@
 ﻿
+using KlinikRandevuPlatformu.MAUI.Services;
 using Microsoft.Extensions.Logging;
 
-namespace KlinikRandevuPlatformu.MAUI
+namespace KlinikRandevuPlatformu.MAUI;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var builder = MauiApp.CreateBuilder();
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
-
-            return builder.Build();
-
-
-
-            builder.Services.AddSingleton(sp =>
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
             {
-                var http = new HttpClient();
-                // ✅ غيّر البورت حسب Swagger عندك
-                http.BaseAddress = new Uri("https://localhost:7153");
-                return http;
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-    
+#if DEBUG
+        builder.Logging.AddDebug();
+#endif
 
-            // Pages (DI)
-            builder.Services.AddSingleton<Pages.LoginPage>();
-           
-        }
+   
+
+        builder.Services.AddSingleton(sp =>
+        {
+            var http = new HttpClient();
+            http.BaseAddress = new Uri("https://localhost:7153"); // غيّر البورت إذا مختلف
+            return http;
+        });
+
+        builder.Services.AddSingleton<ApiClient>();
+        // ✅ سجل الخدمات قبل Build
+        builder.Services.AddSingleton<TokenStore>();
+        builder.Services.AddSingleton<Pages.CitySelectPage>();
+        builder.Services.AddTransient<Pages.ClinicsPage>();
+
+        // ✅ سجل الصفحات (إذا تستخدم DI داخل الصفحات)
+        builder.Services.AddSingleton<Pages.LoginPage>();
+        builder.Services.AddTransient<Pages.RegisterPage>();
+
+        // ✅ هذا لازم يكون آخر سطر
+        return builder.Build();
     }
 }
